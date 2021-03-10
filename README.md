@@ -5,7 +5,7 @@
 A simple web application that allows users to write, save, and delete notes. The goal of this project was to take an existing front end application, and create a server using express and connect the functionality of the web page with a database(.json). This app is deployed with heroku. Click below on the deployed site.
 <br>
 
-[Depoloyed Site](https://lit-peak-34105.herokuapp.com/)
+[Deployed Site](https://lit-peak-34105.herokuapp.com/)
 
 <br>
 
