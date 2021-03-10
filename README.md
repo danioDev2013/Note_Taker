@@ -37,10 +37,11 @@ npm i
 - Click the `Red Trashcan Icon` next to a note, and it will permanently delete the note.
 - When viewing an existing note, click the `Pencil Icon` in the top right in order to be able to create another new note.
 
+![start](public/assets/images/start.png)
+
 🚀 Demo:
 
-
-
+<img src="public/assets/images/note_taker.gif" width="100%" alt="Demo"/>
 
 
 ## License
