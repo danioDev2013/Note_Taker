@@ -6,7 +6,9 @@ const fs = require('fs');
 module.uniqid_debug = true;
 var uniqid = require('uniqid');
 
+//Routing
 module.exports = (app) => {
+    //Get the entire db.json object in JSON format
     app.get('/api/notes', (req, res) => {
         fs.readFile('db/db.json', 'utf8', (err, data) => {
             if(err) { console.err(err) }
@@ -16,11 +18,13 @@ module.exports = (app) => {
         })
     })
 
+    // Get individual items from db.json, based on the ID's
     app.get('/api/notes/:id', (req, res) => {
         const noteId = req.params.id;
         fs.readFile('db/db.json', 'utf8', (err, data) => {
             if (err) { console.err(err) }
             else {
+                 // use a for loop to find the specific item in the db.json array
                 for (let i = 0; i < dbJSON.length; i++) {
                     if (noteId === dbJSON[i].id) {
                         return res.json(dbJSON[i]);
@@ -30,6 +34,7 @@ module.exports = (app) => {
         })
     })
 
+     // Post - Creats a new Note after clicking the Save Button
     app.post('/api/notes', (req, res) => {
         fs.readFile('db/db.json', 'utf8', (err, data) => {
             if (err) {
@@ -49,6 +54,7 @@ module.exports = (app) => {
         });
     });
 
+     // Deleting Notes
     app.delete('/api/notes/:id', (req, res) => {
         const noteId = req.params.id;
         fs.readFile('db/db.json', 'utf8', (err, data) => {
