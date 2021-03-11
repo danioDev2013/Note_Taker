@@ -1,4 +1,4 @@
-//dependencies
+//requiring db file and fs
 const dbJSON = require('../db/db.json');
 const fs = require('fs');
 
@@ -8,33 +8,18 @@ var uniqid = require('uniqid');
 
 //Routing
 module.exports = (app) => {
-    //Get the entire db.json object in JSON format
+
+    //api get request, get and display notes page
     app.get('/api/notes', (req, res) => {
         fs.readFile('db/db.json', 'utf8', (err, data) => {
             if(err) { console.err(err) }
             else {
-                res.json(JSON.parse(data))
+                res.json(JSON.parse(data));
             }
         })
     })
 
-    // Get individual items from db.json, based on the ID's
-    app.get('/api/notes/:id', (req, res) => {
-        const noteId = req.params.id;
-        fs.readFile('db/db.json', 'utf8', (err, data) => {
-            if (err) { console.err(err) }
-            else {
-                 // use a for loop to find the specific item in the db.json array
-                for (let i = 0; i < dbJSON.length; i++) {
-                    if (noteId === dbJSON[i].id) {
-                        return res.json(dbJSON[i]);
-                    }
-                }
-            }
-        })
-    })
-
-     // Post - Creats a new Note after clicking the Save Button
+     // Post - post new notes to the notes page, set an ID
     app.post('/api/notes', (req, res) => {
         fs.readFile('db/db.json', 'utf8', (err, data) => {
             if (err) {
@@ -54,7 +39,7 @@ module.exports = (app) => {
         });
     });
 
-     // Deleting Notes
+     // Deleting Notes by using the id
     app.delete('/api/notes/:id', (req, res) => {
         const noteId = req.params.id;
         fs.readFile('db/db.json', 'utf8', (err, data) => {
